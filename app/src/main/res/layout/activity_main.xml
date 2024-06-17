@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabBackground="@color/charcoal_blue"
+        app:tabIconTint="@color/linen"
+        app:tabIndicatorColor="@color/linen"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/Custom.TabTextAppearance"
+        app:tabTextColor="@color/linen">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabGeoToGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/grid_24"
+            android:text="Geographic to Grid" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabGridToGeo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/globe_24"
+            android:text="Grid to Geographic" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <ScrollView
+        android:id="@+id/svGeoToGrid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:visibility="gone"
+        android:fillViewport="true"
+        android:background="@color/white_tint"
+        app:layout_constraintBottom_toTopOf="@+id/clGeoToGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Easting"
+                android:fontFamily="@font/gabarito_regular"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvEasting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textIsSelectable="true"
+                android:textSize="32sp"
+                android:fontFamily="@font/gabarito_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Northing"
+                android:fontFamily="@font/gabarito_regular"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEasting" />
+
+            <TextView
+                android:id="@+id/tvNorthing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="@font/gabarito_regular"
+                android:textIsSelectable="true"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clGeoToGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:visibility="gone"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gabarito_regular"
+            android:text="Latitude"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLatDeg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:hint="Degree"
+            app:layout_constraintEnd_toStartOf="@+id/tilLatMin"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLatDeg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="number"
+                android:nextFocusDown="@id/etLatMin" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gabarito_regular"
+            android:text="Min: 4 | Max:21"
+            app:layout_constraintStart_toStartOf="@+id/tilLatDeg"
+            app:layout_constraintTop_toBottomOf="@+id/tilLatDeg" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min: 116 | Max:127"
+            android:fontFamily="@font/gabarito_regular"
+            app:layout_constraintStart_toStartOf="@+id/tilLatDeg"
+            app:layout_constraintTop_toBottomOf="@+id/tilLongDeg" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLatMin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:hint="Minute"
+            app:layout_constraintEnd_toStartOf="@+id/tilLatSec"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tilLatDeg"
+            app:layout_constraintTop_toTopOf="@+id/tilLatDeg">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLatMin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="number"
+                android:nextFocusDown="@id/etLatSec" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLatSec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tilLatMin"
+            app:layout_constraintTop_toTopOf="@+id/tilLatDeg">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLatSec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/etLongDeg" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Longitude"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLongDeg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:hint="Degree"
+            app:layout_constraintEnd_toStartOf="@+id/tilLongMin"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLongDeg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="number"
+                android:nextFocusForward="@id/etLongMin" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLongMin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:hint="Minute"
+            app:layout_constraintEnd_toStartOf="@+id/tilLongSec"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tilLongDeg"
+            app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLongMin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:fontFamily="@font/gabarito_regular"
+                android:nextFocusForward="@id/etLongSec" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLongSec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tilLongMin"
+            app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLongSec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="71dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:text="Zone"
+            android:fontFamily="@font/gabarito_regular"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilZone"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Zone"
+            app:layout_constraintEnd_toEndOf="@+id/tilLongDeg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <AutoCompleteTextView
+                android:id="@+id/menuZone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:fontFamily="@font/gabarito_regular"
+                android:text="I" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Central Meridian"
+            android:fontFamily="@font/gabarito_regular"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvCentralMeridian"
+            app:layout_constraintStart_toEndOf="@+id/tilZone"
+            app:layout_constraintTop_toTopOf="@+id/tilZone" />
+
+        <TextView
+            android:id="@+id/tvCentralMeridian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="117"
+            android:textSize="20sp"
+            android:fontFamily="@font/gabarito_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/tilZone"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGeoToGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Convert to Grid"
+            android:fontFamily="@font/gabarito_medium"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/tilLatSec"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilZone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/svGridToGeo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:background="@color/white_tint"
+        app:layout_constraintBottom_toTopOf="@+id/clGridToGeo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitude"
+                android:fontFamily="@font/gabarito_regular"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLatitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="@font/gabarito_regular"
+                android:textIsSelectable="true"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Longitude"
+                android:fontFamily="@font/gabarito_regular"
+                android:textColor="?colorPrimary"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLatitude" />
+
+            <TextView
+                android:id="@+id/tvLongitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="@font/gabarito_regular"
+                android:textIsSelectable="true"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clGridToGeo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easting"
+            android:fontFamily="@font/gabarito_regular"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEasting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Easting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEasting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/etLatMin" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Northing"
+            android:fontFamily="@font/gabarito_regular"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilEasting" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNorthing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Northing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNorthing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/gabarito_regular"
+                android:inputType="numberDecimal"
+                android:nextFocusForward="@id/etLongMin" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="71dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:text="Zone"
+            android:fontFamily="@font/gabarito_regular"
+            android:textColor="?colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilNorthing" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilZone2"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Zone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+            <AutoCompleteTextView
+                android:id="@+id/menuZone2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:fontFamily="@font/gabarito_regular"
+                android:text="I" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Central Meridian"
+            android:textSize="16sp"
+            android:fontFamily="@font/gabarito_regular"
+            app:layout_constraintBottom_toTopOf="@+id/tvCentralMeridian2"
+            app:layout_constraintStart_toEndOf="@+id/tilZone2"
+            app:layout_constraintTop_toTopOf="@+id/tilZone2" />
+
+        <TextView
+            android:id="@+id/tvCentralMeridian2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="117"
+            android:fontFamily="@font/gabarito_regular"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGridToGeo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Convert to Geographic"
+            android:fontFamily="@font/gabarito_medium"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilZone2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
